@@ -1,3 +1,6 @@
+# Modify a Gaussian input file in preparation for a portal job
+# echo's the name of the checkpoint file that Gaussian will write
+
 com_file=$1
 fchk=$2
 
