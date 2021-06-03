@@ -1,0 +1,85 @@
+resources:
+  - description: "1 cpus, 4gb memory, 30 minutes (Debug)"
+    script_lines: |
+      #PBS -l select=1:ncpus=1:mem=4gb,walltime=00:30:00
+      export MEMORY_GB=4
+  - description: "1 cpus, 4gb memory, 72 hours"
+    script_lines: |
+      #PBS -l select=1:ncpus=1:mem=4gb,walltime=72:00:00
+      export MEMORY_GB=4
+  - description: "4 cpus, 16gb memory, 72 hours"
+    script_lines: |
+      #PBS -l select=1:ncpus=4:mem=16gb,walltime=72:00:00
+      export MEMORY_GB=16
+  - description: "8 cpus, 32gb memory, 72 hours"
+    script_lines: |
+      #PBS -l select=1:ncpus=8:mem=32gb,walltime=72:00:00
+      export MEMORY_GB=32
+  - description: "8 cpus, 96gb memory, 72 hours"
+    script_lines: |
+      #PBS -l select=1:ncpus=8:mem=96gb,walltime=72:00:00
+      export MEMORY_GB=96
+  - description: "16 cpus, 48gb memory, 72 hours"
+    script_lines: |
+      #PBS -l select=1:ncpus=16:mem=48gb,walltime=72:00:00
+      export MEMORY_GB=48
+  - description: "32 cpus, 62gb memory, 72 hours"
+    script_lines: |
+      #PBS -l select=1:ncpus=32:mem=62gb,walltime=72:00:00
+      export MEMORY_GB=62
+  - description: "32 cpus, 124gb memory, 72 hours"
+    script_lines: |
+      #PBS -l select=1:ncpus=32:mem=124gb,walltime=72:00:00
+      export MEMORY_GB=124
+software:
+  - name: "Gaussian 16"
+    input_files:
+      required:
+        com: "Gaussian Input File"
+      optional:
+        fchk: "Formatted Checkpoint File"
+    commands: |
+      export GAUSS_SCRDIR=$EPHEMERAL/$PBS_JOBID/
+      mkdir -p $GAUSS_SCRDIR
+      
+      module load gaussian/g16-c01-avx
+      [[ \"{fchk}\" != "" ]] && unfchk {fchk}
+      chk_name=$(/apps/ood/portal_scripts/prep_gaussian.sh {com} {fchk})
+      g16 {com}
+      formchk $chk_name
+    help_text: |
+      <p><a href="https://gaussian.com/">Gaussian</a> is an electronic
+      structure code. To run a Gaussian job you must provide a valid
+      Gaussian input file and, optionally, a formatted checkpoint
+      file.</p>
+
+      <p>A Gaussian job consists of the following steps:</p>
+      <ul>
+       <li>If a formatted checkpoint file was provided it is converted to 
+       binary format by the Gaussian utility
+       <a href="https://gaussian.com/unfchk/">unfchk</a></li>
+       <li>The provided Gaussian input file is modified - see details below</li>
+       <li>Gaussian is run</li>
+       <li>The checkpoint file output by Gaussian is converted to text format 
+       by the Gaussian utility
+       <a href="https://gaussian.com/formchk/">formchk</a></li>
+      </ul>
+
+      <p>Before running Gaussian your input file will be modified in the
+      following ways:</p>
+      <ul>
+       <li>Any Link 0 commands relating to computing resources are removed</li>
+       <li>New Link 0 commands for %NProcShared and %Mem are added according to 
+       requested job resources</li>
+       <li>If the %Chk Link 0 command is not present it is added with a default 
+       checkpoint file name of checkpoint.chk</li>
+       <li>If a formatted checkpoint file is provided for the job the %OldChk 
+       Link 0 command is added with the appropriate file name</li>
+      </ul>
+script_template: |
+  #!/bin/bash
+  {resources}
+  
+  cd $PBS_O_WORKDIR
+  
+  {commands}
