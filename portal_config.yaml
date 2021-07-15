@@ -2,34 +2,42 @@ resources:
   - description: "1 cpus, 4gb memory, 30 minutes (Debug)"
     script_lines: |
       #PBS -l select=1:ncpus=1:mem=4gb,walltime=00:30:00
+      export NCORES=1
       export MEMORY_GB=4
   - description: "1 cpus, 4gb memory, 72 hours"
     script_lines: |
       #PBS -l select=1:ncpus=1:mem=4gb,walltime=72:00:00
+      export NCORES=1
       export MEMORY_GB=4
   - description: "4 cpus, 16gb memory, 72 hours"
     script_lines: |
       #PBS -l select=1:ncpus=4:mem=16gb,walltime=72:00:00
+      export NCORES=4
       export MEMORY_GB=16
   - description: "8 cpus, 32gb memory, 72 hours"
     script_lines: |
       #PBS -l select=1:ncpus=8:mem=32gb,walltime=72:00:00
+      export NCORES=8
       export MEMORY_GB=32
   - description: "8 cpus, 96gb memory, 72 hours"
     script_lines: |
       #PBS -l select=1:ncpus=8:mem=96gb,walltime=72:00:00
+      export NCORES=8
       export MEMORY_GB=96
   - description: "16 cpus, 48gb memory, 72 hours"
     script_lines: |
       #PBS -l select=1:ncpus=16:mem=48gb,walltime=72:00:00
+      export NCORES=16
       export MEMORY_GB=48
   - description: "32 cpus, 62gb memory, 72 hours"
     script_lines: |
       #PBS -l select=1:ncpus=32:mem=62gb,walltime=72:00:00
+      export NCORES=32
       export MEMORY_GB=62
   - description: "32 cpus, 124gb memory, 72 hours"
     script_lines: |
       #PBS -l select=1:ncpus=32:mem=124gb,walltime=72:00:00
+      export NCORES=32
       export MEMORY_GB=124
 software:
   - name: "Gaussian 16"
@@ -43,7 +51,7 @@ software:
       mkdir -p $GAUSS_SCRDIR
       
       module load gaussian/g16-c01-avx
-      [[ \"{fchk}\" != "" ]] && unfchk {fchk}
+      [[ "{fchk}" != "" ]] && unfchk {fchk}
       chk_name=$(/apps/ood/portal_scripts/prep_gaussian.sh {com} {fchk})
       g16 {com}
       formchk $chk_name
@@ -78,8 +86,13 @@ software:
       </ul>
 script_template: |
   #!/bin/bash
-  {resources}
+  #PBS -N {job_name}
+  {custom_config}{resources}
   
-  cd $PBS_O_WORKDIR
-  
+  cd "$PBS_O_WORKDIR"
+
+  (while true; do  echo $SECONDS > WALLTIME; sleep 5s; done) &
+
   {commands}
+custom_config_line_regex: "^#PBS .*"
+status_link: "https://api.rcs.imperial.ac.uk/service-status"
