@@ -33,12 +33,14 @@ then
     sed --in-place --expression "1s/^/%OldChk=$chk\n/" "$com_file"
 fi
 
-if ! top_link0 "$com_file" | grep --quiet "%Chk"
+if ! top_link0 "$com_file" | grep --ignore-case --quiet "%Chk"
 then
     # no Chk directive so set this to a default value
     sed --in-place --expression "1s/^/%Chk=checkpoint.chk\n/" "$com_file"
     echo "checkpoint.chk"
 else
     # print name of specified Chk file
-    grep --max-count=1 --only-matching --perl-regexp "%Chk=\K\S+" "$com_file"
+    chk=$(grep --ignore-case --max-count=1 --only-matching --perl-regexp "%Chk=\K\S+" "$com_file")
+    # ensure filename has the .chk suffix
+    echo "$(basename "$chk" .chk).chk"
 fi

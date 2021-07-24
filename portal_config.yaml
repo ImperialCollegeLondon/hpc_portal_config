@@ -51,10 +51,11 @@ software:
       mkdir -p $GAUSS_SCRDIR
       
       module load gaussian/g16-c01-avx
-      [[ "{fchk}" != "" ]] && unfchk {fchk}
-      chk_name=$(/apps/ood/portal_scripts/prep_gaussian.sh {com} {fchk})
-      g16 {com}
-      formchk $chk_name
+      [[ "{fchk}" != "" ]] && unfchk "{fchk}"
+      chk_name=$(/apps/ood/portal_scripts/prep_gaussian.sh "{com}" "{fchk}")
+      g16 "{com}"
+      formchk "$chk_name"
+      /apps/ood/portal_scripts/publish_gaussian.sh "{com}" "$chk_name"
     help_text: |
       <p><a href="https://gaussian.com/">Gaussian</a> is an electronic
       structure code. To run a Gaussian job you must provide a valid
@@ -88,10 +89,13 @@ script_template: |
   #!/bin/bash
   #PBS -N {job_name}
   {custom_config}{resources}
-  
+
+  set -e
+
+  echo "HOST: $(hostname)"
   cd "$PBS_O_WORKDIR"
 
-  (while true; do  echo $SECONDS > WALLTIME; sleep 5s; done) &
+  (while true; do echo "$SECONDS" > WALLTIME; sleep 5s; done) &
 
   {commands}
 custom_config_line_regex: "^#PBS .*"
