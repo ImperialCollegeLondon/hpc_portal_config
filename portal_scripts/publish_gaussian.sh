@@ -44,7 +44,7 @@ check_single_file() {
 (
     echo -e "name\tvalue"
     gibbs=$(grep "Sum of electronic and thermal Free Energies=" "${log_file}" | tail -1 | awk ' {print $8}')
-    [ -n "$gibbs" ] && echo -e "Gibbs Energy\t${gibbs}"
+    [ -n "$gibbs" ] && echo -e "Gibbs_Energy\t${gibbs}"
     inchi=$($obabel -i g03 "${log_file}" -o inchi)
     [ -n "$inchi" ] && echo -e "InChI\t${inchi}"
     inchikey=$($obabel -i g03 "${log_file}" -o inchikey)
