@@ -52,10 +52,10 @@ software:
       
       module load gaussian/g16-c01-avx
       [[ "{fchk}" != "" ]] && unfchk "{fchk}"
-      chk_name=$(/apps/ood/portal_scripts/prep_gaussian.sh "{com}" "{fchk}")
+      chk_name=$(/apps/ood/portal_config/portal_scripts/prep_gaussian.sh "{com}" "{fchk}")
       g16 "{com}"
       formchk "$chk_name"
-      /apps/ood/portal_scripts/publish_gaussian.sh "{com}" "$chk_name"
+      /apps/ood/portal_config/portal_scripts/publish_gaussian.sh "{com}" "$chk_name"
     help_text: |
       <p><a href="https://gaussian.com/">Gaussian</a> is an electronic
       structure code. To run a Gaussian job you must provide a valid
