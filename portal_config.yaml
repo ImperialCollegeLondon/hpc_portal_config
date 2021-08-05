@@ -1,40 +1,40 @@
 resources:
-  - description: "1 cpus, 4gb memory, 30 minutes (Debug)"
+  - description: "1 cpus, 4gb mem, 30 mins (Debug)"
     script_lines: |
       #PBS -l select=1:ncpus=1:mem=4gb,walltime=00:30:00
       export NCORES=1
       export MEMORY_GB=4
-  - description: "1 cpus, 4gb memory, 72 hours"
+  - description: "1 cpus, 4gb mem, 72 hrs"
     script_lines: |
       #PBS -l select=1:ncpus=1:mem=4gb,walltime=72:00:00
       export NCORES=1
       export MEMORY_GB=4
-  - description: "4 cpus, 16gb memory, 72 hours"
+  - description: "4 cpus, 16gb mem, 72 hrs"
     script_lines: |
       #PBS -l select=1:ncpus=4:mem=16gb,walltime=72:00:00
       export NCORES=4
       export MEMORY_GB=16
-  - description: "8 cpus, 32gb memory, 72 hours"
+  - description: "8 cpus, 32gb mem, 72 hrs"
     script_lines: |
       #PBS -l select=1:ncpus=8:mem=32gb,walltime=72:00:00
       export NCORES=8
       export MEMORY_GB=32
-  - description: "8 cpus, 96gb memory, 72 hours"
+  - description: "8 cpus, 96gb mem, 72 hrs"
     script_lines: |
       #PBS -l select=1:ncpus=8:mem=96gb,walltime=72:00:00
       export NCORES=8
       export MEMORY_GB=96
-  - description: "16 cpus, 48gb memory, 72 hours"
+  - description: "16 cpus, 48gb mem, 72 hrs"
     script_lines: |
       #PBS -l select=1:ncpus=16:mem=48gb,walltime=72:00:00
       export NCORES=16
       export MEMORY_GB=48
-  - description: "32 cpus, 62gb memory, 72 hours"
+  - description: "32 cpus, 62gb mem, 72 hrs"
     script_lines: |
       #PBS -l select=1:ncpus=32:mem=62gb,walltime=72:00:00
       export NCORES=32
       export MEMORY_GB=62
-  - description: "32 cpus, 124gb memory, 72 hours"
+  - description: "32 cpus, 124gb mem, 72 hrs"
     script_lines: |
       #PBS -l select=1:ncpus=32:mem=124gb,walltime=72:00:00
       export NCORES=32
