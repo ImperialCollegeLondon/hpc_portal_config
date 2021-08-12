@@ -99,6 +99,8 @@ script_template: |
 
   {commands}
 custom_config_line_regex: "^#PBS .*"
-status_link: "https://api.rcs.imperial.ac.uk/service-status"
 enabled_repositories:
   - "ic_hpc"
+external_links:
+  "System Status": "https://api.rcs.imperial.ac.uk/service-status"
+  "Extend Jobs": "https://selfservice.rcs.ic.ac.uk/jobs/qstat"
