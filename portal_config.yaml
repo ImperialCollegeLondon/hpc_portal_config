@@ -98,7 +98,7 @@ script_template: |
   (while true; do echo "$SECONDS" > WALLTIME; sleep 5s; done) &
 
   {commands}
-custom_config_line_regex: "^#PBS .*"
+custom_config_line_regex: "^(#PBS|export) .*"
 enabled_repositories:
   - "ic_hpc"
 external_links:
