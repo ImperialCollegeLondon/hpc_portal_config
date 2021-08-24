@@ -40,7 +40,7 @@ resources:
       export NCORES=32
       export MEMORY_GB=124
 software:
-  - name: "Gaussian 16"
+  - name: "Gaussian 16 (C01)"
     input_files:
       required:
         com: "Gaussian Input File"
