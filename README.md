@@ -20,11 +20,11 @@ for the project become available.
 Alternatively you may author a pull request (PR) for a piece of
 software. Please do create an issue beforehand to check that the
 software is suitable. See the existing entries for software and the
-configuration file reference section of the [portal documention][] for
-guidance. Please bear in mind that integration with data repositories
-and the provision of high quality metadata are key aspects of the HPC
-Portal. This means any new software configuration should consider what
-files and metadata to upload as part of a publication. An issue can be
-used for discussion.
+configuration file reference section of the [portal documentation][]
+for guidance. Please bear in mind that integration with data
+repositories and the provision of high quality metadata are key
+aspects of the HPC Portal. This means any new software configuration
+should consider what files and metadata to upload as part of a
+publication. An issue can be used for discussion.
 
 [portal documentation]: https://github.com/ImperialCollegeLondon/hpc_portal#configuration-file-reference
