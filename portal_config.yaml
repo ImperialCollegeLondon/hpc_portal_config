@@ -106,3 +106,4 @@ external_links:
   "System Status": "https://api.rcs.imperial.ac.uk/service-status"
   "Extend Jobs": "https://selfservice.rcs.ic.ac.uk/jobs/qstat"
 cluster: "rcs"
+config_link: "https://github.com/ImperialCollegeLondon/hpc_portal_config"
