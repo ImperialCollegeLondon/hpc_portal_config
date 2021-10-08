@@ -43,9 +43,11 @@ software:
   - name: "Gaussian 16 (C01)"
     input_files:
       required:
-        com: "Gaussian Input File"
+        - key: com
+          description: "Gaussian Input File"
       optional:
-        fchk: "Formatted Checkpoint File"
+        - key: fchk
+          description: "Formatted Checkpoint File"
     commands: |
       export GAUSS_SCRDIR=$EPHEMERAL/$PBS_JOBID/
       mkdir -p $GAUSS_SCRDIR
@@ -103,7 +105,9 @@ enabled_repositories:
   - "ic_hpc"
   - "zenodo"
 external_links:
-  "System Status": "https://api.rcs.imperial.ac.uk/service-status"
-  "Extend Jobs": "https://selfservice.rcs.ic.ac.uk/jobs/qstat"
+  - text: "System Status"
+    url: "https://api.rcs.imperial.ac.uk/service-status"
+  - text: "Extend Jobs"
+    url: "https://selfservice.rcs.ic.ac.uk/jobs/qstat"
 cluster: "rcs"
 config_link: "https://github.com/ImperialCollegeLondon/hpc_portal_config"
