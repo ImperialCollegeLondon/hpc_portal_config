@@ -95,6 +95,7 @@ script_template: |
   set -e
 
   echo "HOST: $(hostname)"
+  echo "Job ID: $PBS_JOBID"
   cd "$PBS_O_WORKDIR"
 
   (while true; do echo "$SECONDS" > WALLTIME; sleep 5s; done) &
