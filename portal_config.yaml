@@ -112,3 +112,5 @@ external_links:
     url: "https://selfservice.rcs.ic.ac.uk/jobs/qstat"
 cluster: "rcs"
 config_link: "https://github.com/ImperialCollegeLondon/hpc_portal_config"
+timeouts:
+  submit: 30
