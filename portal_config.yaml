@@ -114,3 +114,4 @@ cluster: "rcs"
 config_link: "https://github.com/ImperialCollegeLondon/hpc_portal_config"
 timeouts:
   submit: 30
+  delete: 30
