@@ -39,6 +39,11 @@ check_single_file() {
     $obabel -i g03 "${log_file}" -o cml -O opt.cml && cml_file=opt.cml
     [ -n "$cml_file" ] && echo -e "${cml_file}\tOptimised geometry"
 
+    baf_file=$(check_single_file baf)
+    [ -n "$baf_file" ] && echo -e "${baf_file}\tRaw Binary Array File"
+
+    faf_file=$(check_single_file faf)
+    [ -n "$faf_file" ] && echo -e "${faf_file}\tFortran Array File"
 ) > FILES_TO_PUBLISH
 
 (
