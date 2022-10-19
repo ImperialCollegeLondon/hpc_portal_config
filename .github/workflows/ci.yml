@@ -12,6 +12,7 @@ jobs:
         with:
           repository: ImperialCollegeLondon/hpc_portal
           path: portal
+          ref: develop
       - name: Install prerequisites
         run: |
           python -m pip install -q -U pip
