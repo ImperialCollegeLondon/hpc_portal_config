@@ -53,6 +53,8 @@ software:
       mkdir -p $GAUSS_SCRDIR
       
       module load gaussian/g16-c01-avx
+      module load tools/dev
+      module load NBO/7.0.10-GCC-9.3.0
       [[ "{fchk}" != "" ]] && unfchk "{fchk}"
       chk_name=$(/apps/ood/portal_config/portal_scripts/prep_gaussian.sh "{com}" "{fchk}")
       g16 "{com}"
