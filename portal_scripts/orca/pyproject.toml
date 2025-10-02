@@ -1,0 +1,7 @@
+[project]
+name = "orca-files-processor"
+version = "1.0.0"
+dependencies = [
+    "orca-pi==1.0.1",
+    "pytest==8.4.2",
+]
