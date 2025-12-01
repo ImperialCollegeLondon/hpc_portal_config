@@ -56,10 +56,10 @@ software:
       module load Gaussian/16.C.02-AVX2
       module load NBO/7.0.10-GCC-10.2.0
       [[ "{fchk}" != "" ]] && unfchk "{fchk}"
-      chk_name=$(/apps/ood/portal_config/portal_scripts/prep_gaussian.sh "{com}" "{fchk}")
+      chk_name=$(/rds/general/apps/ood/portal_config/portal_scripts/prep_gaussian.sh "{com}" "{fchk}")
       g16 "{com}"
       formchk "$chk_name" && rm -f "$chk_name"
-      /apps/ood/portal_config/portal_scripts/publish_gaussian.sh "{com}" "$chk_name"
+      /rds/general/apps/ood/portal_config/portal_scripts/publish_gaussian.sh "{com}" "$chk_name"
     help_text: |
       <p><a href="https://gaussian.com/">Gaussian</a> is an electronic
       structure code. To run a Gaussian job you must provide a valid
