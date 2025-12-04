@@ -53,7 +53,6 @@ software:
       mkdir -p $GAUSS_SCRDIR
       
       module load tools/prod
-      #module load Gaussian/16.C.02-AVX2
       module load Gaussian/16.C.01-AVX2
       module load NBO/7.0.10-GCC-10.2.0
       [[ "{fchk}" != "" ]] && unfchk "{fchk}"

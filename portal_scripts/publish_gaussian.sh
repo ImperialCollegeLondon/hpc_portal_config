@@ -3,7 +3,7 @@ chk_file="$2"
 
 log_file=$(basename "$com_file" "${com_file##*.}")log
 
-export obabel="/apps/ood/openbabel/bin/obabel"
+export obabel="/rds/general/apps/ood/openbabel/bin/obabel"
 
 check_single_file() {
     # look for files with a suffix given by $1
