@@ -53,8 +53,9 @@ software:
       mkdir -p $GAUSS_SCRDIR
       
       module load tools/prod
-      module load Gaussian/16.C.01-AVX2
       module load NBO/7.0.10-GCC-10.2.0
+      module load Gaussian/16.C.01-AVX2
+      module load OpenBabel/3.1.1-gompi-2023a
       [[ "{fchk}" != "" ]] && unfchk "{fchk}"
       chk_name=$(/rds/general/apps/ood/portal_config/portal_scripts/prep_gaussian.sh "{com}" "{fchk}")
       g16 "{com}"
