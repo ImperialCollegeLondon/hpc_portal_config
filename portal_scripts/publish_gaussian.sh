@@ -3,8 +3,6 @@ chk_file="$2"
 
 log_file=$(basename "$com_file" "${com_file##*.}")log
 
-export obabel="/rds/general/apps/ood/openbabel/bin/obabel"
-
 check_single_file() {
     # look for files with a suffix given by $1
     # if there is a single file echo the name
@@ -36,7 +34,7 @@ check_single_file() {
     [ -n "$wfx_file" ] && echo -e "${wfx_file}\tExtended-Wavefunction file"
 
 
-    $obabel -i g03 "${log_file}" -o cml -O opt.cml && cml_file=opt.cml
+    obabel -i g03 "${log_file}" -o cml -O opt.cml && cml_file=opt.cml
     [ -n "$cml_file" ] && echo -e "${cml_file}\tOptimised geometry"
 
     baf_file=$(check_single_file baf)
@@ -50,8 +48,8 @@ check_single_file() {
     echo -e "name\tvalue"
     gibbs=$(grep "Sum of electronic and thermal Free Energies=" "${log_file}" | tail -1 | awk ' {print $8}')
     [ -n "$gibbs" ] && echo -e "Gibbs_Energy\t${gibbs}"
-    inchi=$($obabel -i g03 "${log_file}" -o inchi)
+    inchi=$(obabel -i g03 "${log_file}" -o inchi)
     [ -n "$inchi" ] && echo -e "InChI\t${inchi}"
-    inchikey=$($obabel -i g03 "${log_file}" -o inchikey)
+    inchikey=$(obabel -i g03 "${log_file}" -o inchikey)
     [ -n "$inchikey" ] && echo -e "InChIKey\t${inchikey}"
 ) > METADATA
